@@ -17,6 +17,9 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
         builder: DevicePreview.appBuilder,
+        theme:ThemeData(
+          primaryColor: Colors.cyanAccent
+        ),
         home: HomeScreen());
   }
 }
