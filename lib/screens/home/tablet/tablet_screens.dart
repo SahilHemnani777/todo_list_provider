@@ -1,12 +1,21 @@
 import 'package:flutter/material.dart';
 
+import '../add_items_to_list_screen.dart';
+import '../list_screen.dart';
+
 class TabletPortraitScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
-        onPressed: (){},
-        child: Icon(Icons.add,),
+        onPressed: () {
+          //opening the bottom sheet
+          showModalBottomSheet(
+              context: context, builder: (context) => ListAdder());
+        },
+        child: Icon(
+          Icons.add,
+        ),
         backgroundColor: Theme.of(context).primaryColor,
       ),
       backgroundColor: Theme.of(context).primaryColor,
@@ -41,11 +50,14 @@ class TabletPortraitScreen extends StatelessWidget {
               ],
             ),
           ),
-          Expanded(child: Container(
+          Expanded(
+              child: Container(
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.only(topLeft: Radius.circular(20), topRight: Radius.circular(20)),
-                color: Colors.black
-            ),
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(20),
+                    topRight: Radius.circular(20)),
+                color: Colors.black),
+            child: ListScreen(),
           ))
         ],
       ),
@@ -67,7 +79,7 @@ class TabletLandscapeScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Padding(
-                  padding: const EdgeInsets.only(top:10),
+                  padding: const EdgeInsets.only(top: 10),
                   child: CircleAvatar(
                     child: Icon(
                       Icons.list_alt,
@@ -78,7 +90,7 @@ class TabletLandscapeScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(
-                  height:50,
+                  height: 50,
                 ),
                 Text(
                   "T",
@@ -118,26 +130,42 @@ class TabletLandscapeScreen extends StatelessWidget {
                       color: Colors.black),
                 ),
                 SizedBox(
-                  height:50,
+                  height: 50,
                 ),
-                FloatingActionButton(onPressed: (){},child: Icon(Icons.add, size: 40,),backgroundColor: Colors.black,)
-
+                FloatingActionButton(
+                  onPressed: () {
+                    //opening the bottom sheet
+                    showModalBottomSheet(
+                        context: context, builder: (context) => ListAdder());
+                  },
+                  child: Icon(
+                    Icons.add,
+                    size: 40,
+                  ),
+                  backgroundColor: Colors.black,
+                )
               ],
             ),
           ),
           Column(
             children: [
               Container(
-              width: MediaQuery.of(context).size.width -100,
-              height: 50,
-              child: Center(child: Text("0 Tasks", style: TextStyle(fontSize: 20, color: Colors.black45),)),),
+                width: MediaQuery.of(context).size.width - 100,
+                height: 50,
+                child: Center(
+                    child: Text(
+                  "0 Tasks",
+                  style: TextStyle(fontSize: 20, color: Colors.black45),
+                )),
+              ),
               Container(
-                height: MediaQuery.of(context).size.height-50,
-                width: MediaQuery.of(context).size.width -100,
+                height: MediaQuery.of(context).size.height - 50,
+                width: MediaQuery.of(context).size.width - 100,
                 decoration: BoxDecoration(
                   color: Colors.black,
                   borderRadius: BorderRadius.only(topLeft: Radius.circular(20)),
                 ),
+                child: ListScreen(),
               )
             ],
           )
