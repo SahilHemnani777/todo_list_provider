@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todo_list_provider/model/task_data.dart';
 
 import '../add_items_to_list_screen.dart';
 import '../list_screen.dart';
@@ -44,7 +46,7 @@ class TabletPortraitScreen extends StatelessWidget {
                       color: Colors.black),
                 ),
                 Text(
-                  "0 Tasks",
+                  "${Provider.of<TaskData>(context).taskCount}" + " Tasks",
                   style: TextStyle(color: Colors.black45),
                 ),
               ],
@@ -154,7 +156,7 @@ class TabletLandscapeScreen extends StatelessWidget {
                 height: 50,
                 child: Center(
                     child: Text(
-                  "0 Tasks",
+                  "${Provider.of<TaskData>(context).taskCount}" + " Tasks",
                   style: TextStyle(fontSize: 20, color: Colors.black45),
                 )),
               ),

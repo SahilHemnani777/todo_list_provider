@@ -2,6 +2,8 @@ import 'package:device_preview/device_preview.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
+import 'package:todo_list_provider/model/task_data.dart';
 import 'package:todo_list_provider/screens/home/home_screen.dart';
 
 void main() => runApp(DevicePreview(
@@ -14,13 +16,19 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     //Only for Mobile
     SystemChrome.setEnabledSystemUIOverlays([SystemUiOverlay.bottom]);
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-        builder: DevicePreview.appBuilder,
-        theme:ThemeData(
-          primaryColor: Colors.cyanAccent
-        ),
-        home: HomeScreen());
+    return ChangeNotifierProvider(
+      create: (BuildContext context) {
+        return TaskData();
+      },
+      child: MaterialApp(
+          debugShowCheckedModeBanner: false,
+          builder: DevicePreview.appBuilder,
+          theme:ThemeData(
+            unselectedWidgetColor: Colors.white,
+              primaryColor: Colors.cyanAccent
+          ),
+          home: HomeScreen()),
+    );
   }
 }
 

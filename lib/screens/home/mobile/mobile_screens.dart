@@ -1,5 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todo_list_provider/model/task_data.dart';
 
 import '../add_items_to_list_screen.dart';
 import '../list_screen.dart';
@@ -47,7 +49,7 @@ class MobilePortraitScreen extends StatelessWidget {
                       color: Colors.black),
                 ),
                 Text(
-                  "0 Tasks",
+                  "${Provider.of<TaskData>(context).taskCount}"+" Tasks",
                   style: TextStyle(color: Colors.black45),
                 ),
               ],
@@ -109,7 +111,7 @@ class MobileLandscapeScreen extends StatelessWidget {
                       color: Colors.black),
                 ),
                 Text(
-                  "0 Tasks",
+                  "${Provider.of<TaskData>(context).taskCount}"+" Tasks",
                   style: TextStyle(color: Colors.black45),
                 ),
                 SizedBox(

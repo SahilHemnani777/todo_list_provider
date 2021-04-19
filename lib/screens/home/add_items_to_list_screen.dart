@@ -1,15 +1,53 @@
 import 'package:flutter/material.dart';
-import 'package:todo_list_provider/responsive/screen_type_builder.dart';
-import 'package:todo_list_provider/screens/home/tablet/tablet_adder_screen.dart';
+import 'package:provider/provider.dart';
+import 'package:todo_list_provider/model/task.dart';
+import 'package:todo_list_provider/model/task_data.dart';
 
-import 'mobile/mobile_adder_screen.dart';
 
 class ListAdder extends StatelessWidget {
+  String newTaskTitle;
   @override
   Widget build(BuildContext context) {
-    return ScreenTypeLayout(
-      mobile: MobileListAdder(),
-      tablet: TabletListAdder(),
+    return Container(
+      color: Colors.black,
+      child: Container(
+        decoration: BoxDecoration(color: Theme.of(context).primaryColor,
+            borderRadius: BorderRadius.only(
+                topLeft: Radius.circular(20), topRight: Radius.circular(20))),
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: <Widget>[
+            Text(
+              'Add Task',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 30.0,
+                color: Colors.black,
+              ),
+            ),
+            TextField(
+              autofocus: true,
+              textAlign: TextAlign.center,
+              onChanged: (newText) {
+                newTaskTitle = newText;
+              },
+            ),
+            FlatButton(
+              child: Text(
+                'Add',
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+              color: Colors.black,
+              onPressed: () {
+                Provider.of<TaskData>(context, listen: false).addTask(newTaskTitle);
+                Navigator.pop(context);
+              },
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
